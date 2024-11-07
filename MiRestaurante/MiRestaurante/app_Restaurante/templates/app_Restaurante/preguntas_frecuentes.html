@@ -1,0 +1,19 @@
+{% extends 'app_Restaurante/base.html' %}
+
+{% block title %} Preguntas Frecuentes {% endblock %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-header">
+            Preguntas Frecuentes
+        </div>
+        <div class="card-body">
+            {% for faq in faqs %}
+                <h5>{{ faq.pregunta }}</h5>
+                <p>{{ faq.respuesta }}</p>
+            {% empty %}
+                <p>No hay preguntas frecuentes disponibles.</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

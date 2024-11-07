@@ -1,0 +1,29 @@
+{% extends 'app_Restaurante/base.html' %}
+
+{% block title %}Preguntas Frecuentes{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Preguntas Frecuentes</h1>
+    
+    <form method="GET" action="{% url 'faq' %}">
+        <div class="input-group mb-3">
+            <input type="text" name="q" value="{{ query }}" class="form-control" placeholder="Buscar...">
+            <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+        </div>
+    </form>
+
+    <div class="list-group">
+        {% for faq in faqs %}
+            <div class="list-group-item">
+                <h5 class="mb-1">{{ faq.pregunta }}</h5>
+                <p class="mb-1">{{ faq.respuesta }}</p>
+            </div>
+        {% empty %}
+            <div class="list-group-item">
+                <p>No se encontraron preguntas.</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

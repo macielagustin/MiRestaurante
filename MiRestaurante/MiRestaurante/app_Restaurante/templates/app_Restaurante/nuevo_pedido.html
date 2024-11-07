@@ -1,0 +1,45 @@
+{% extends 'app_Restaurante/base.html' %}
+{% load crispy_forms_tags %} 
+{% block title %} Nuevo Pedido {% endblock %}
+
+{% block content %}
+
+    <div class="card">
+        <div class="card-header">
+            Registro de Pedidos
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Nuevo Pedido</h5>
+            <p class="card-text">Por favor complete los datos del Formulario</p>
+            
+            <form method='POST' enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <table class="table table-striped table-hover">
+                    <tbody>
+                        {{ formpedido.as_table }}  <!-- Renderiza el formulario como una tabla -->
+                    </tbody>
+                </table>
+                <button type="submit" class="btn btn-outline-primary btn-sm" title="Graba Nuevo Cliente">
+                    <i class="fa fa-floppy-o" aria-hidden="true"></i> Registrar
+                </button>
+            </form>
+    
+            {% if formpedido.errors %}
+                <div class="alert alert-danger mt-3">
+                    <ul>
+                        {% for field, errors in formpedido.errors.items %}
+                            <li>{{ field }}: {{ errors|join:", " }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+        <div class="card-body">
+            <p>
+                <a href="/" class="btn btn-outline-secondary btn-sm">Inicio</a>
+            </p>
+        </div>
+    </div>
+    
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'app_Restaurante/base.html' %}
+
+{% block title %}Pedidos{% endblock %}
+
+{% block content %}
+
+<h1>Pedidos</h1>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Pedido</th>
+            <th scope="col">Email</th>
+            <th scope="col">Imagen</th>
+            <th scope="col">Acciones</th> <!-- Cambié "Acciones" al encabezado -->
+        </tr>
+    </thead>
+    <tbody>
+        {% for cliente in clientes %}
+        <tr>
+            <th scope="row">{{ cliente.id }}</th>
+            <td>{{ cliente.nombre }}</td>
+            <td>{{ cliente.pedido.nombre }}</td>
+            <td>{{ cliente.email }}</td>
+            <td><img src="{{ cliente.imagen.url }}" alt="{{ cliente.nombre }}" style="width:150px;"></td>
+            <td>
+                <a class="btn btn-outline-danger" href="{% url 'eliminar_pedido' cliente.id %}">Eliminar</a>
+            </td>
+            
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
